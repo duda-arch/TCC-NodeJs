@@ -13,9 +13,9 @@
                   <p class="card-text  more"><%=el.description%></p>
                   <a href="/carrinho"><button href="/carrinho" class="btn btn-primary">Comprar</button></a>
                  
-                  <span style="font-family: 'Ubuntu', sans-serif; font-weight: bold; font-size: 1.5em; color:black;"> R$:<%=el.price%></span>   
+                  <span style="font-family: 'Ubuntu', sans-serif; font-weight: bold; font-size: 1.3em; color:black;">
                 
-                  <form action="/addCard" method="post">
+                  <form style="display: inline;" action="/addCard" method="post">
                     <input name="name" type="hidden" value="<%=el.name%>">
 
                     <input name="description" type="hidden" value="<%=el.description%>">
@@ -25,7 +25,9 @@
                     <input name="img" type="hidden" value="<%=el.img%>">
                     <button   class="btn btn-warning btn-md  " role="button" aria-disabled="true"><img src="../products/icon.ico" width="20px" alt="" srcset=""></button>
                 </form>
-           
+
+                R$:<%=el.price%>
+            </span>   
                 </div>
             </div>
         

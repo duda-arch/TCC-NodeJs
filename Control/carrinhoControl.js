@@ -93,4 +93,19 @@ rout.post('/addCard',async(req,res)=>{
     
 })
 
+rout.post('/delete',(req,res)=>{
+
+    var id = req.body.id
+    var carrinho = req.session.User.carrinho 
+    var productLixo = req.session.User.carrinho[id]
+    
+    req.session.User.price  =  parseFloat(req.session.User.price - productLixo.price).toFixed(2);
+
+  
+
+    carrinho.pop(productLixo)
+
+    res.redirect('/carrinho')
+})
+
 module.exports = rout;

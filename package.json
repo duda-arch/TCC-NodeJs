@@ -17,6 +17,8 @@
     "express-session": "^1.17.2",
     "knex": "^0.95.9",
     "mysql2": "^2.2.5",
+    "number-converter": "^1.2.1",
+    "number-in-full-multilang": "^1.0.2",
     "socket.io": "^4.1.3"
   }
 }

@@ -85,8 +85,8 @@ app.get('/admin',MiddlerAdmin ,async(req,res)=> {
                             sts = true
                         }
                         if(sts != true){
-
-                            await Knex.insert({name:name,price:price,description:description,slug:slug,img:fileName}).table('products').then(()=>{
+                            
+                            await Knex.insert({name:name,price:parseFloat(price).toFixed(2),description:description,slug:slug,img:fileName}).table('products').then(()=>{
                                 res.render('admin',{
                                     alert:{status:true,msg:'Product Create Success',style:'success'},
                                     result:result2,

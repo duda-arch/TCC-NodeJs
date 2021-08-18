@@ -1,0 +1,238 @@
+
+<%- include('../partials/header.ejs')%>
+<%if(alert.status){ %>
+  
+    <div class="container col-5">
+        <div class="alert alert-<%= alert.style%> alert-dismissible fade show" role="alert">
+            <strong><%= alert.msg%> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      
+    </div>
+ <% }%>
+<div   style="visibility:visible" class="col-md-4 col-md-offset-4" id="login">
+    <section class="inner-wrapper login" id='log-hidden' >
+        <article>
+            <form action="/login" onsubmit="return check_form1()" method="POST">
+                <h5 class="card-title"> Fazer Login</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon "><i class="fa fa-envelope"> </i></span>
+                        <input type="text" class=" log1 form-control" id="logEmail" name="logEmail" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon "><i class="fa fa-key"> </i></span>
+                        <input type="password" class=" log1 form-control" id="logPassword" name="logPassword" placeholder="Password">
+                    </div>
+                </div>
+                  <button type="submit"   class="btn btn-success btn-block">Logar</button>
+            </form>
+                  
+            <button style="margin-top: 10px;" class="btn btn-block btn-secondary " onclick="hiddenLog()">New User</button>
+        </article>
+    </section>
+</div>
+<div  class="col-md-4 col-md-offset-4" id="login">
+    <section id="cadastro-hidden"  style="visibility: hidden; display: none;" class="inner-wrapper login">
+        <article>
+            <form action="/cadastro" onsubmit="return check_form2()" method="POST">
+                <h5 class="card-title">Create new User</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"> </i></span>
+                        <input type="text" name='name' class="form-control" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
+                        <input type="text" name='email' id="cadEmail" class="form-control" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"> </i></span>
+                        <input type="password" name='password1' id="cadPass1" class="form-control log2" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"> </i></span>
+                        <input type="password" name='password2' id="cadPass2"class="form-control log2" placeholder=" Confirm Password">
+                    </div>
+                </div>
+                  <button type="submit"  class="btn btn-success btn-block">Register</button>
+                  <div class="forgot">
+                  </div>
+            </form>
+            <button style="margin-top: 10px;" class="btn btn-block btn-secondary "  onclick="hiddenLog()">Logar</button>
+        </article>
+    </section>
+</div>
+
+
+
+<%- include('../partials/footer.ejs')%> 
+<script>
+ function check_form2(){
+
+var inputs = document.getElementsByClassName('log2');
+var cadPass1 = document.getElementById('cadPass1').value;
+var cadPass2 = document.getElementById('cadPass2').value
+
+var result = false 
+if(cadPass1 == cadPass2){
+    result = true
+}
+var len = inputs.length;
+var valid = true;
+for(var i=0; i < len; i++){
+ if (!inputs[i].value){ valid = false; }
+        if (!valid){
+        alert('Por favor preencha todos os campos.');
+        return false;
+        } else {
+
+            if(result){
+                return true
+            }else{
+                alert('Senha Diferente ');
+                return false
+            }
+        }
+
+    }
+}
+ function hiddenLog(){
+
+    var Log1 = document.getElementById('log-hidden')
+
+    var Cadastro = document.getElementById('cadastro-hidden')
+
+    if( Cadastro.style.visibility == 'hidden'){
+
+        Cadastro.style.visibility = 'visible';
+        Cadastro.style.display = '';
+        Log1.style.visibility = 'Hidden';
+        Log1.style.display = 'none';
+
+
+    }else{
+
+        Cadastro.style.visibility = 'hidden';
+        Cadastro.style.display = 'none';
+        Log1.style.visibility = 'visible';
+        Log1.style.display = '';
+
+    }
+        
+
+ }
+function check_form1(){
+
+    var inputs = document.getElementsByClassName('log1');
+  var len = inputs.length;
+  var valid = true;
+  for(var i=0; i < len; i++){
+     if (!inputs[i].value){ valid = false; }
+     
+     
+
+  if (!valid){
+    alert('Por favor preencha todos os campos.');
+    return false;
+  } else {return true}
+
+}
+
+}
+
+</script>
+
+<style>
+
+ body{
+     margin-top: 10em;
+     background-image: url('../../img/wallpaper.png');
+     background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+ }
+ input::placeholder {
+  color: red;
+}
+ h5{
+        color: white;
+    }
+#login {
+	-webkit-perspective: 1000px;
+	-moz-perspective: 1000px;
+	perspective: 1000px;
+	margin-top:50px;
+	margin-left:30%;
+}
+.login {
+	font-family: 'Josefin Sans', sans-serif;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	transition: .3s;
+	-webkit-transform: rotateY(40deg);
+	-moz-transform: rotateY(30deg);
+	transform: rotateY(30deg);
+}
+.login:hover {
+	-webkit-transform: rotate(0);
+	-moz-transform: rotate(0);
+	transform: rotate(0);
+}
+
+.login .form-group {
+	margin-bottom:17px;
+}
+.login .form-control,
+.login .btn {
+	border-radius:0;
+    height: 65px;
+}
+.login .btn {
+	text-transform:uppercase;
+	letter-spacing:3px;
+}
+.input-group-addon {
+	border-radius:10;
+	color:#fff;
+	background:#f3aa0c;
+	border:#f3aa0c;
+}
+.forgot {
+	font-size:16px;
+}
+.forgot a {
+	color:#333;
+}
+.forgot a:hover {
+	color:#5cb85c;
+}
+
+.inner-wrapper, #contact-us .contact-form, #contact-us .our-address {
+    font-size: 19px;
+    line-height: 1.7em;
+    font-weight: 300;
+    padding: 50px;
+    background-color: rgba(0,0,0,0.6) !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: 100px;
+}
+.input-group-addon {
+    padding: 15px;
+    background: #414140;
+    border: #f3aa0c;
+   
+}
+
+ </style>
+ 

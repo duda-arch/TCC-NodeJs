@@ -1,0 +1,13 @@
+
+@import url(//db.onlinewebfonts.com/c/240a7cb10b49b02c94ceddc459d385a9?family=Gagalin);
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+body{
+
+    margin-top: 5em;
+    background-color: #D3D3D3;
+}
+.bg{
+    border:solid 1px;
+    border-color: red;
+}

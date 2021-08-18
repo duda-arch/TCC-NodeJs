@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+				
+<nav class=" navbar navbar fixed-top navbar-expand-lg navbar-light bg-li">
+						
+    <span style="color: #728C42;" class="logo">Venon </span><span style="color: black; font-size: 25px;">*</span> <span class="logo" style="color: black;"> Net</span>
+
+      <a class="navbar-brand" href="#"></a>
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item active">
+<a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Quem Somos?</a>
+</li>
+
+      <div class="dropdown">
+        <a class=" dropdown-toggle nav-link" style="background-color:inherit;border-color: inherit;"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/product/creatina">Creatina</a>
+          <a class="dropdown-item" href="/product/Hipercalorico">Hipercalorico</a>
+        </div>
+      </div>
+</ul>
+
+
+
+</div>
+
+<%
+
+try{
+
+    if(log != undefined){
+%>
+<div class="logo"><%=log.username%></div>
+<a href="/carrinho"  style="margin-left: 10px;" class="btn btn-warning btn-md " role="button" aria-disabled="true"><img src="../products/icon.ico" width="20px" alt="" srcset=""></a> 
+<a class="nav-link " href="/editUser"><button type="button" class="btn btn-danger">Config <img src="https://img-premium.flaticon.com/png/512/46/premium/46997.png?token=exp=1629247725~hmac=fb5ea3bf5b4d06b1329a5bb82013d93a" width="20px" alt="" srcset=""></button> </a>  
+
+  <%  }
+}catch{ %>
+
+    <a href="/carrinho" style="margin-right: 10px;" class="btn btn-warning btn-md " role="button" aria-disabled="true"><img src="../products/icon.ico" width="20px" alt="" srcset=""></a>
+    <a  style="background-color: white; justify-content: center; border-radius: 10px; margin-top: 10px;" href="/login"><img   width="55px" style=" padding: 5px;" src="../../img/exit.png" alt=""></a>
+
+<% } %>
+ 
+  
+</nav>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<style>
+
+.bg-li {
+    background-color: #B0C4DE;
+    font-size: 20px;
+    color: white;
+    padding: 0em 10px 6px;
+}
+
+.logo{
+    font-size: 35px;
+    font-family: 'Gagalin';
+    color: black;
+    }
+</style>

@@ -1,0 +1,102 @@
+<%- include('../partials/header.ejs')%>
+
+     <div class="container-fluid ">
+        <div id="products" class="row justify-content-center ">
+<% obj.forEach((el)=>{ %>
+
+
+
+            <div  id='description' class="card" style="width: 18rem;">
+                <img class="card-img-top" src="../products/<%=el.img%>" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%=el.name%></h5>
+                  <p class="card-text  more"><%=el.description%></p>
+                  <a href="/carrinho"><button href="/carrinho" class="btn btn-primary">Comprar</button></a>
+                 
+                  <span style="font-family: 'Ubuntu', sans-serif; font-weight: bold; font-size: 1.5em; color:black;"> R$:<%=el.price%></span>   
+                
+                  <form action="/addCard" method="post">
+                    <input name="name" type="hidden" value="<%=el.name%>">
+
+                    <input name="description" type="hidden" value="<%=el.description%>">
+
+                    <input name="price" type="hidden" value="<%=el.price%>">
+                    <input name="slug" type="hidden" value="<%=el.slug%>">
+                    <input name="img" type="hidden" value="<%=el.img%>">
+                    <button   class="btn btn-warning btn-md  " role="button" aria-disabled="true"><img src="../products/icon.ico" width="20px" alt="" srcset=""></button>
+                </form>
+           
+                </div>
+            </div>
+        
+<% })%>
+        </div>
+     </div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+ 
+
+   
+ $(document).ready(function() {
+ 
+ var showChar = 100;  
+ var ellipsestext = "...";
+ var moretext = "Ler Mais >";
+ var lesstext = "Esconder";
+ 
+
+ $('.more').each(function() {
+     var content = $(this).html();
+
+     if(content.length > showChar) {
+
+         var c = content.substr(0, showChar);
+         var h = content.substr(showChar, content.length - showChar);
+
+         var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="btn btn-info morelink">' + moretext + '</a></span>';
+
+         $(this).html(html);
+     }
+
+ });
+
+ $(".morelink").click(function(){
+     if($(this).hasClass("less")) {
+         $(this).removeClass("less");
+         $(this).html(moretext);
+     } else {
+         $(this).addClass("less");
+         $(this).html(lesstext);
+     }
+     $(this).parent().prev().toggle();
+     $(this).prev().toggle();
+     return false;
+ });
+});
+
+    
+</script>
+<style>
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+    .container-product{
+        width: 100%;
+        height:  400px;
+        background-color: aqua;
+        padding: 10px;
+    }
+    .container-element{
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        height:  300px;
+        background-color: wheat;
+    }
+</style>
+<%- include('../partials/footer.ejs')%>

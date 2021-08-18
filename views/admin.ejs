@@ -1,0 +1,66 @@
+<%- include('partials/header.ejs')%>
+<div class="container">
+  <%if(alert.status){ %>
+    <div class="alert alert-<%= alert.style%> alert-dismissible fade show" role="alert">
+      <strong><%= alert.msg%> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+ <% }%>
+    <h2 class="AdminTitle" >Add Products</h2>
+    <div class="row">
+        <form  action="/admin" method="POST" enctype="multipart/form-data" >
+            <div class="row">
+              <div class="col">
+                  <h4>Name</h4>
+                <input type="text" class="form-control" name="name" placeholder="Name">
+              </div>
+              <div class="col">
+                  <h4>Price</h4>
+                <input type="text" class="form-control" name='price' placeholder="Price">
+              </div>
+              <div class="col">
+                  <h4>Description</h4>
+                <input type="text" class="form-control" name='description' placeholder="Description">
+              </div>
+              <div class="col">
+                  <h4>Slug</h4>
+                <select class="custom-select mr-sm-2"  name="slug">
+                    <option selected>Escolher...</option>
+
+                      <%result.forEach((slug,index) =>{ %>
+
+                        <option value="<%= slug %>"><%= slug%></option>
+                    <%  })%>
+
+               
+                  </select>
+              </div>
+          
+              <div class="col">
+                  <h4>Image</h4>
+                  <input type="file" name="file" id="">
+              </div>
+            </div>
+            <button  style="margin-top: 10px;" class="btn btn-warning">Send</button>
+        </form>
+        <hr>
+  
+        <form action="/create" method="post">
+            <input style="display: inline;" id="slg" name="slg" class="form-control" placeholder="Create Slug" type="text">
+           <a href="/admin"> <button class="btn btn-warning" type="submit"><img src="/img/ferramentas.png" alt="" srcset=""></button></a>
+        </form>
+    </div>
+
+</div>
+<style>
+    .AdminTitle{
+        text-align: center;
+        padding: 10px;
+        background-color: #B0C4DE;
+        border-radius: 10px;
+    }
+</style>
+<!-- <%- include('partials/footer.ejs')%> -->

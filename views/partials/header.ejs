@@ -35,10 +35,13 @@
         <a class=" dropdown-toggle nav-link" style="background-color:inherit;border-color: inherit;"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Products
         </a>
+    
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/product/creatina">Creatina</a>
-          <a class="dropdown-item" href="/product/Hipercalorico">Hipercalorico</a>
+          <%slug.forEach((el)=>{ %>  
+          <a class="dropdown-item" href="/product/<%=el%>"><%=el%></a>
+        <%  })%> 
         </div>
+
       </div>
 </ul>
 

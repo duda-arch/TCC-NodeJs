@@ -6,6 +6,7 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
+const model = require('./models/productsModel')
 
 io.on('connection',(socket)=>{
 
@@ -35,17 +36,23 @@ app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
+
+    var slug = await  model.SlugCategory()
+
+
     if(req.session.User != undefined){
 
     
     res.render('index',{
-        log:{username:req.session.User.name}
+        log:{username:req.session.User.name},
+        slug:slug
 
     })
 }else{
     res.render('index',{
-
+        
+        slug:slug
     })
 }
 })

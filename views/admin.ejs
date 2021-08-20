@@ -1,5 +1,5 @@
 <%- include('partials/header.ejs')%>
-<div class="container">
+<div  id="SOME" class="container">
   <%if(alert.status){ %>
     <div class="alert alert-<%= alert.style%> alert-dismissible fade show" role="alert">
       <strong><%= alert.msg%> 
@@ -10,8 +10,8 @@
 
  <% }%>
     <h2 class="AdminTitle" >Add Products</h2>
-    <div class="row">
-        <form  action="/admin" method="POST" enctype="multipart/form-data" >
+    <div  class="row ">
+        <form  id="SOME" action="/admin" class="products" method="POST" enctype="multipart/form-data" >
             <div class="row">
               <div class="col">
                   <h4>Name</h4>
@@ -48,19 +48,52 @@
         </form>
         <hr>
   
-        <form action="/create" method="post">
+        <form id="SOME" action="/create" method="post">
+          <h2 class="AdminTitle" >Create Slug</h2>
             <input style="display: inline;" id="slg" name="slg" class="form-control" placeholder="Create Slug" type="text">
            <a href="/admin"> <button class="btn btn-warning" type="submit"><img src="/img/ferramentas.png" alt="" srcset=""></button></a>
         </form>
     </div>
-
 </div>
+<div class="editProducts">
+
+  <button style="margin-left: 30px;" class="btn btn-dark" onclick="myFunction()">Editar Produtos </button>
+
+  <%- include('partials/EditProducts.ejs')%>
+</div>
+<script>
+  function myFunction() {
+
+    if(document.getElementById("SOME").style.visibility == "hidden"){
+      document.getElementById("SOME").style.visibility = "visible"
+    }else{
+      document.getElementById("SOME").style.visibility = "hidden"
+
+    }
+
+    if(document.getElementById("SOME").style.display === "none"){
+      document.getElementById("SOME").style.display = ""
+
+    }else{
+      document.getElementById("SOME").style.display = "none"
+
+    }
+
+  }
+  </script>
+
+
+</script>
 <style>
+    .products{
+      margin-top: 10px;
+      margin-left: 10px;
+      padding: 30px;
+    }
     .AdminTitle{
         text-align: center;
         padding: 10px;
         background-color: #B0C4DE;
-        border-radius: 10px;
     }
 </style>
 <!-- <%- include('partials/footer.ejs')%> -->

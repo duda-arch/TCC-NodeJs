@@ -18,12 +18,25 @@ class Product{
             return false
         }
     }
-
+    async ReturnProductsAll(){
+        try {
+            var result = await knex.select('*').orderBy('id', 'desc').table('products')
+            return result
+        } catch (err) {
+            console.log(err)
+            return []
+        }
+    }
     async SlugCategory(){
-
+        var ls = []
        try {
         var result = await knex.select('*').table('productsCategory')
-            return result
+
+           result.forEach((el)=>{
+              ls.push(el.slug)
+           })
+
+        return ls
        } catch (err) {
            console.log(err)
            return []

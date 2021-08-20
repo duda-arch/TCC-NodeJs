@@ -21,17 +21,20 @@ rout.use(session({
 
 
 rout.get('/carrinho', async (req,res)=>{
+    const slug = await Model.SlugCategory()
 
     if(req.session.User != undefined){
 
         res.render('products/carrinho',{
             obj:req.session.User.carrinho,
             total:req.session.User.price,
-            log:{username:req.session.User.name}
+            log:{username:req.session.User.name},
+            slug:slug
         })   
     }else{  
         res.render('products/carrinho',{
             obj:[],
+            slug:slug
         })   
     }
 })
@@ -58,6 +61,7 @@ rout.get('/sessionAdm', async (req,res)=>{
 
 rout.post('/addCard',async(req,res)=>{
     var {name,description,price,slug,img} = req.body
+    const slug32 = await Model.SlugCategory()
 
    
     if(req.session.User != undefined){
@@ -88,6 +92,7 @@ rout.post('/addCard',async(req,res)=>{
             titleErr:"Precisa estar logado ",
             takeMe :"Fazer login",
             takeLink:"/login",
+            slug:slug32
         })
     }
     

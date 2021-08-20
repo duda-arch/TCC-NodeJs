@@ -13,7 +13,10 @@ const session = require('express-session')
 
 //Select Product for ID
 product.get('/product/:pd',async(req,res)=>{
+
     var slug = req.params.pd
+
+    const slug32 = await Model.SlugCategory()
 
     if(req.session.User != undefined){
         var result = await Model.FindSlug(slug)
@@ -21,7 +24,8 @@ product.get('/product/:pd',async(req,res)=>{
             await Knex.select('*').where({slug:slug}).table('products').orderBy('id', 'desc').then((date)=>{
                 res.render('products/products',{
                     obj:date,
-                    log:{username:req.session.User.name}
+                    log:{username:req.session.User.name},
+                    slug:slug32
 
                     
                 })
@@ -31,8 +35,11 @@ product.get('/product/:pd',async(req,res)=>{
             res.render('page-404',{
                 titleErr:"Page 404",
                 takeMe :"Return Home",
-                log:{username:req.session.User.name},
                 takeLink:"/",
+                log:{username:req.session.User.name},
+                slug:slug32
+                
+
             })
         }
     }else{
@@ -41,30 +48,38 @@ product.get('/product/:pd',async(req,res)=>{
             await Knex.select('*').where({slug:slug}).table('products').orderBy('id', 'desc').then((date)=>{
                 res.render('products/products',{
                     obj:date,
-                    
+                    slug:slug32
                 })
             })
         }else{
-    
-            res.render('page-404',{
-                titleErr:"Page 404",
-                takeMe :"Return Home",
-                log:{username:req.session.User.name},
-                takeLink:"/",
-            })
+            if(req.session.User != undefined){
+
+                res.render('page-404',{     
+                    titleErr:"Page 404",
+                    takeMe :"Return Home",
+                    log:{username:req.session.User.name},
+                    takeLink:"/",
+                    slug:slug32
+                })
+            }else{
+                res.render('page-404',{
+                    titleErr:"Page 404",
+                    takeMe :"Return Home",
+                    takeLink:"/",
+                    slug:slug32
+                })
+            }
+         
         }
     }
 
-  
 })
-
 
 product.post('/create',async(req,res)=>{
     const slg = req.body.slg
 
-    const result2 = []
-
     var result = await Model.IfNotSlugInCategory(slg)
+    const result2 = await Model.SlugCategory()
 
     if(result){
     
@@ -72,21 +87,21 @@ product.post('/create',async(req,res)=>{
 
 
           await Knex.insert({slug:slg}).table('productsCategory').then(async()=>{
-            const one = await Model.SlugCategory()
-            one.forEach(element => {
-               return result2.push(element.slug)
-            });
+
+        
 
             res.render('admin',{
                 alert:{status:true,msg:'Slug Create Success',style:'success'},
-                
-                result:result2
+                result:result2,
+                slug:result2
                 })
                 return
         }).catch(()=>{
+
             res.render('admin',{
                 alert:{status:true,msg:'Slug error',style:'danger'},
-                result:result2
+                result:result2,
+                slug:result2,
                 })
                 return
 
@@ -98,7 +113,8 @@ product.post('/create',async(req,res)=>{
             console.log(err)
             res.render('admin',{
                 alert:{status:true,msg:'Slug error',style:'danger'},
-                result:result2
+                result:result2,
+                slug :result2
                 })
                 return
 
@@ -108,7 +124,8 @@ product.post('/create',async(req,res)=>{
 
         res.render('admin',{
             alert:{status:true,msg:'Slug ja registrado',style:'danger'},
-            result:result2
+            result:result2,
+            slug :result2
             })
 
             return

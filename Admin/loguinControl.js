@@ -7,6 +7,8 @@ const session = require('express-session')
 const Knex = require('../database/Connection')
 const { IsAdmin, CreateUser, IsUser, ReturnUser, EditUserEmail,EditUserName } = require('../models/logModel')
 
+const Model = require('../models/productsModel')
+
 
 app.use(session({
     secret:'palavrasecretaparapulodesegurançadekeydebala',
@@ -14,16 +16,20 @@ app.use(session({
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 
-app.get('/editUser',(req,res)=>{
+app.get('/editUser',async(req,res)=>{
+    const slug = await Model.SlugCategory()
     res.render('loguin/editLog',{
         log:{username:req.session.User.name},
         name:req.session.User.name,
         email:req.session.User.email,
-        alert:{status:false}
+        alert:{status:false},
+        slug:slug
     })
 })
 
 app.post('/editUser',async(req,res)=>{
+    const slug = await Model.SlugCategory()
+
     var oldEmail = req.session.User.email
     var oldName = req.session.User.name
 
@@ -64,7 +70,8 @@ var msg = ''
             log:{username:req.session.User.name},
             name:req.session.User.name,
             email:req.session.User.email,
-            alert:{status:true,msg:msg,style:"success"}
+            alert:{status:true,msg:msg,style:"success"},
+            slug:slug
         })
     }
 
@@ -76,6 +83,8 @@ app.post('/login',async(req,res)=>{
 
     
     var{logEmail,logPassword} = req.body
+
+    const slug = await Model.SlugCategory()
 
     var result = await IsUser(logEmail)
     var adm = await IsAdmin(logEmail)
@@ -109,7 +118,7 @@ app.post('/login',async(req,res)=>{
 
               res.render('loguin/loguin',{
                 alert:{status:true,msg:'Senha incorreta  ',style:'danger'},
-               
+               slug:slug
                 })
 
 
@@ -120,7 +129,7 @@ app.post('/login',async(req,res)=>{
 
             res.render('loguin/loguin',{
                 alert:{status:true,msg:'Email não encontrado',style:'danger'},
-               
+                slug:slug
                 })
         }
     }
@@ -133,6 +142,8 @@ app.get('/destroy',(req,res)=>{
 })
 
 app.post('/cadastro',async(req,res)=>{
+    const slug = await Model.SlugCategory()
+
     var{name,email,password1} = req.body
 
     var salt = bcryptjs.genSaltSync(10);
@@ -145,7 +156,7 @@ app.post('/cadastro',async(req,res)=>{
 
         res.render('loguin/loguin',{
             alert:{status:true,msg:'Usuario Ja cadastrado',style:'danger'},
-           
+           slug:slug
             })
     }else{
         
@@ -164,7 +175,7 @@ app.post('/cadastro',async(req,res)=>{
              }else{
                 res.render('loguin/loguin',{
                     alert:{status:true,msg:'Usuario Ja cadastrado',style:'danger'},
-                   
+                   slug:slug
                     })
              }
 
@@ -180,10 +191,11 @@ app.post('/cadastro',async(req,res)=>{
 
 
 app.get('/login',async(req,res)=>{
+    const slug = await Model.SlugCategory()
 
     res.render('loguin/loguin',{
         alert:{status:false,style:'danger'},
-        
+        slug:slug
         })
 })
 

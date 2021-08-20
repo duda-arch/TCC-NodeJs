@@ -1,0 +1,135 @@
+<div class="container">
+
+    <h2 class="AdminTitle" >Edit Products</h2>
+    <div class="row">
+
+        <div id="EditProducts"  class="col-6">
+            <%products.forEach((el)=>{ %>
+           
+                
+                <form  id="form-Products-Edit"  onsubmit="return check_form1()"  action="/EditProducts" method="POST" enctype="multipart/form-data" >
+                    <div class="row">
+                        <input type="hidden" value="<%= el.id%>" name="id">
+                        <input type="hidden" value="<%= el.img%>" name="oldImg">
+                        <div class="row">
+                            <div style="margin-top: 20px; margin-bottom: 10px;" class="col-8">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" style=" font-size: 20px;" class="btn btn-success"><%= el.id%></button>
+                                    <button type="button" class="btn btn-warning"><%= el.slug%></button>
+                                    <button type="button" onclick="showproduct('<%= el.name%>','<%= el.price%>','<%= el.description%>','<%= el.img%>','<%= el.id%>')" class="btn btn-danger">Exibir Produto</button>
+                                  </div>
+                            </div>
+                            
+                            
+                        </div>
+        
+                      <div class="col">
+                          <h4>Name</h4>
+                        <input  value=" <%= el.name%>" type="text" class="form-control log1" name="name" placeholder="Name">
+                      </div>
+                      <div class="col">
+                          <h4>Price</h4>
+                        <input type="text"  value=" <%= el.price%>"class="form-control log1 "  name='price' placeholder="Price">
+                      </div>
+                      <div class="col">
+                          <h4>Description</h4>
+                        <input type="text" value=" <%= el.description%>" class="form-control  log1" name='description' placeholder="Description">
+                      </div>
+                      <div class="col">
+                          <h4>Slug</h4>
+                        <select class="custom-select mr-sm-2" name="slug">
+                            <option  selected><%= el.slug%></option>
+        
+                              <%result.forEach((slug,index) =>{ %>
+        
+                                <option value="<%= slug %>"><%= slug%></option>
+                            <%  })%>
+        
+                       
+                          </select>
+                      </div>
+                  
+                      <div class="col">
+                          <h4>Image</h4><%= el.img%>
+                          <input type="file" value=" <%= el.img%>" class=" log1" name="file" id="">
+                      </div>
+                    </div>
+                    <button  style="margin-top: 10px; margin-bottom: 20px; " class="btn btn-warning">Editar</button>
+                </form>
+                
+            <%  })%>  
+        </div>
+        <div  class="col">
+            <div  id='description' class="card" style="width: 18rem;">
+                <h5 class="btn btn-success" id="id">0</h5>
+                <div class="card-img-top" id="div3">  </div>
+                <div class="card-body">
+                  <h5 id="div1" class="card-title"> </h5>
+                  <p  id="div2" class="card-text  more">Sem Produtos Selecionados</p>
+                 
+                  <span style="font-family: 'Ubuntu', sans-serif; font-weight: bold; font-size: 1.3em; color:black;">
+                
+                    <div id="div4"></div>
+
+            </span>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function check_form1(){
+
+var inputs = document.getElementsByClassName('log1');
+var len = inputs.length;
+
+var valid = true;
+
+for(var i=0; i < len; i++){
+ if (!inputs[i].value){ valid = false; }
+ 
+ 
+
+if (!valid){
+alert('Por favor preencha todos os campos.');
+return false;
+} else {return true}
+
+}
+}
+</script>
+
+<script>
+    function showproduct(name,price,description,img,id){
+
+  document.getElementById("div1").innerText = name;
+ 
+  document.getElementById("div2").innerText = description;
+
+  var imagen =   '<img class="card-img-top" src="../products/'+ img +  '" alt="Card image cap">';
+  var price1 = ' R$:'+price
+  document.getElementById("div3").innerHTML = imagen 
+
+  document.getElementById("div4").innerText = price1 
+
+  document.getElementById("id").innerText = id 
+
+
+    }
+</script>
+<style>
+#EditProducts{
+    width: 60em;
+    height: 900px;
+    padding-left: 10px;
+    overflow: scroll;
+}
+#form-Products-Edit{
+    border-color:black;
+    border-width: medium;
+    padding-left: 10px;
+    border-style:solid;
+    box-sizing:content-box;
+    background-color: blanchedalmond;
+}
+</style>

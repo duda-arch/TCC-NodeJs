@@ -31,6 +31,7 @@ product.get('/product/:pd',async(req,res)=>{
             res.render('page-404',{
                 titleErr:"Page 404",
                 takeMe :"Return Home",
+                log:{username:req.session.User.name},
                 takeLink:"/",
             })
         }
@@ -48,6 +49,7 @@ product.get('/product/:pd',async(req,res)=>{
             res.render('page-404',{
                 titleErr:"Page 404",
                 takeMe :"Return Home",
+                log:{username:req.session.User.name},
                 takeLink:"/",
             })
         }
@@ -77,6 +79,7 @@ product.post('/create',async(req,res)=>{
 
             res.render('admin',{
                 alert:{status:true,msg:'Slug Create Success',style:'success'},
+                
                 result:result2
                 })
                 return

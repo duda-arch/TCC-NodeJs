@@ -1,47 +1,58 @@
 <%- include('partials/header.ejs')%>
 <body>
-<%- include('partials/carrousel.ejs')%>
+    <%- include('partials/carrousel.ejs')%>
 
-<div class="container-fluid justify-content-center  ">
-        <div class="row md-12 justify-content-center ">
-            <div class="col-md-8  plx2 ">
-                <span style="color: #728C42;" class="plx_logo logo ">Venon </span><span class="plx_logo logo" style="color: white;"> * Net</span>
-            </div>
-            <div style="margin-top:30px;" class="col-md-3">
-                <img  class="" style="width: 430px; height: 500px; " alt="Responsive image" src="../../page-home/destaque1.png">
-             
-            </div>
-        </div>
-
-    <div class="container-fluid">
-        <div class="row justify-content-start">
-            <div class=" plx_texto ">
-            <p>Treinar é viver. Tem coisa melhor do sentir a evolução do esforço no nosso corpo? </br> <span style="color: red;"> - Vem com a Venon que sua dor tera Resultado</p></span>
-            </div>
-            <div class="destaque ">
-                Clique na imagem para receber dicas de saude
-
-            </div>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-md-7  plx_3_texto ">
-            <span style="color: black;" class=" plx_logo_2 ">Venon </span><span class=" plx_logo_2 " style="color: white;"> * Net</span>
-            <p>	    A ideia de começar esse projeto veio das necessidades que os donos
-                sentiram quando utilizaram o sistema de diversos sites que não propuseram ou desagregaram com as informações sobre suplementos/alimentação saudável, a Venon.net entrou no mercado justamente para isso, suprir as dificuldades e dúvidas de muitas pessoas que querem ter (ou que já tem) uma vida fitness. 
-                <a href='index.php?pg=quem_somos.php'><button>Quem somos</button></a>
-            </p>     
-        </div>
-        <div class="col  img-fluid plx3 ">
+    <div class="container-fluid justify-content-center  ">
+            <div class="row md-12 justify-content-center ">
+                <div class="col-md-8  plx2 ">
+                    <span style="color: #728C42;" class="plx_logo logo ">Venon </span><span class="plx_logo logo" style="color: white;"> * Net</span>
             
+                </div>
+                <div style="margin-top:30px;" class="col-md-3">
+                    <img  class="" style="width: 460px; height: 500px; " alt="Responsive image" src="../../page-home/desculpa.png">
+                </div>
+            </div>
+
+        
+        <div class="row ">
+            <div class="col-md-7  plx_3_texto ">
+                <span style="color: black;" class=" plx_logo_2 ">Venon </span><span class=" plx_logo_2 " style="color: white;"> * Net</span>
+                <p>	    A ideia de começar esse projeto veio das necessidades que os donos
+                    sentiram quando utilizaram o sistema de diversos sites que não propuseram ou desagregaram com as informações sobre suplementos/alimentação saudável, a Venon.net entrou no mercado justamente para isso, suprir as dificuldades e dúvidas de muitas pessoas que querem ter (ou que já tem) uma vida fitness. 
+                    <a href='index.php?pg=quem_somos.php'><button>Quem somos</button></a>
+                </p>     
+                <div style="background-color: white;   margin-top: 150px;" class="row parceiros">
+                    <h4>Parceiros</h4>
+                    <hr>
+                <img src="/img/parceiros.png" alt="" srcset="">
+                <hr>
+                <h4 style="margin-left:45%;" >Sobre nos</h4>
+                <hr>
+                    <div class="descrip">
+                        Criada no dia 11 de Fevereiro de 2020, a Venon.net é um e-commerce que chegou no ramo da saúde e suplementação. Sendo assim, o site traz um sistema de para compra de suplementos e para dicas de alimentação/suplementação conforme a necessidade ou genética de tal indivíduo.
+                    </div>
+                </div>
+            </div>
+            
+       
+           <div class="col">
+                <div   class="col  img-fluid plx3 "></div>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.8892810482585!2d-49.16735038498556!3d-25.44196488378292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcefccfea67fa5%3A0xf94d6453e244d143!2sR.%20Augusta%20Santos%20Andrade%20-%20Maria%20Antonieta%2C%20Pinhais%20-%20PR%2C%2083331-060!5e0!3m2!1spt-BR!2sbr!4v1615853449767!5m2!1spt-BR!2sbr" width="100%" height="450" style="margin-top:10px; position:relative;border:0;" allowfullscreen="" loading="lazy"></iframe>           </div>
+        </div>
+
+
+
+        <div style="margin-top: 10em;" >
+            <%- include('partials/Featured.ejs')%>
         </div>
     </div>
-</div>
-
-    <%- include('partials/Featured.ejs')%>
 </body>
 <%- include('partials/footer.ejs')%>
 <style>
+.descrip{
+    font-size: 22px;
+}
 .destaque{
    	width: 22.5em; 
     background-color: #728C42 ;
@@ -52,6 +63,10 @@
     font-size:20px;
     font-family: 'Gagalin';
     word-spacing: 0.1em;
+}
+.parceiros{
+    margin-bottom: 10px;
+  padding: 10px;
 }
 .plx1{
 background-image: url('../page-home/paralax1.png');

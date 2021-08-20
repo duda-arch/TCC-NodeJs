@@ -36,7 +36,18 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/',(req,res)=>{
-    res.render('index')
+    if(req.session.User != undefined){
+
+    
+    res.render('index',{
+        log:{username:req.session.User.name}
+
+    })
+}else{
+    res.render('index',{
+
+    })
+}
 })
 
 var port = 7856

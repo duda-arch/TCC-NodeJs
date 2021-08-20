@@ -7,6 +7,6 @@ const knex = require('knex')({
       database : 'tccNode'
     }
   });
-
+//
 
   module.exports = knex

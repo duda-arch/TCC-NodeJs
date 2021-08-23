@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs')%>
+<div  id="SOME" class="container">
+  <%if(alert.status){ %>
+    <div class="alert alert-<%= alert.style%> alert-dismissible fade show" role="alert">
+      <strong><%= alert.msg%> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+ <% }%>
+
+ <div class="container">
+    <div class="row">
+      <div  class="col mt-4 mb-4 ">
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+            <a href="/admin">
+          <button style="margin-left: 30px;" id="button" class="btn btn-dark" onclick="myFunction()">Criar Produtos</button>
+        </a>
+          <form action="/EditProductsID" method="post">
+
+            <select style="margin-left: 75%;" class="btn btn-dark " onchange="this.form.submit()"  name="slug">
+              <option selected>Escolher Slug do Produto</option>
+
+                <%result.forEach((slug,index) =>{ %>
+
+                  <option value="<%= slug %>"><%= slug%></option>
+              <%  })%>
+
+         
+            </select>
+
+          </form>
+
+        </div>
+     </div>
+     <%- include('partials/EditProducts.ejs')%>
+
+   </div>
+</div>
+
+ <%- include('partials/footer.ejs')%>

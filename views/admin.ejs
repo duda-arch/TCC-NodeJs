@@ -55,28 +55,64 @@
         </form>
     </div>
 </div>
-<div class="editProducts">
 
-  <button style="margin-left: 30px;" class="btn btn-dark" onclick="myFunction()">Editar Produtos </button>
+<div class="container">
+    <div class="row">
+      <div  class="col mt-4 mb-4 ">
 
-  <%- include('partials/EditProducts.ejs')%>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <p class="lead">
+
+         
+          <button style="margin-left: 30px;" id="button" class="btn btn-dark" onclick="myFunction()">Editar Produtos <span style="font-size: 15px; color: red;"> edição rapida  </span> </button>
+          
+        </p>
+          <form action="/EditProductsID" method="post">
+
+            <select style="margin-left: 75%;" class="btn btn-dark "  onchange="this.form.submit()"  name="slug">
+              <option selected>Escolher Slug ...</option>
+
+                <%result.forEach((slug,index) =>{ %>
+
+                  <option value="<%= slug %>"><%= slug%></option>
+              <%  })%>
+
+         
+            </select>
+
+          </form>
+
+        </div>
+     </div>
+   </div>
+</div>
+
+
+
+<div style="visibility: hidden;  " id="pdr" class="editProducts">
+
+    
+     <%- include('partials/EditProducts.ejs')%>
+
 </div>
 <script>
   function myFunction() {
 
     if(document.getElementById("SOME").style.visibility == "hidden"){
+      document.getElementById("pdr").style.visibility = "hidden"
       document.getElementById("SOME").style.visibility = "visible"
+      document.getElementById("button").innerText = "Lista de Produtos"  
     }else{
       document.getElementById("SOME").style.visibility = "hidden"
+      document.getElementById("pdr").style.visibility = "visible"
+      document.getElementById("button").innerText = "Criar Produtos"
 
     }
 
-    if(document.getElementById("SOME").style.display === "none"){
+    if(document.getElementById("SOME").style.display == "none"){
       document.getElementById("SOME").style.display = ""
-
     }else{
       document.getElementById("SOME").style.display = "none"
-
     }
 
   }

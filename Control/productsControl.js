@@ -74,13 +74,31 @@ product.get('/product/:pd',async(req,res)=>{
     }
 
 })
+product.post('/EditProductsID',async (req,res)=>{
+    
+
+    const slug = req.body.slug
+    
+    const result2 = await Model.SlugCategory()
+    const products = await Model.ReturnProductForSlug(slug)
+
+
+    res.render('EditProducts',{
+        alert:{status:false,msg:'Pé De cabra',style:'success'},
+        result:result2,
+        log:{username:'Root'},
+        slug:result2,
+        products:products
+
+    })
+})
 
 product.post('/create',async(req,res)=>{
     const slg = req.body.slg
 
     var result = await Model.IfNotSlugInCategory(slg)
     const result2 = await Model.SlugCategory()
-
+    const products = await Model.ReturnProductsAll()
     if(result){
     
         try {
@@ -93,7 +111,8 @@ product.post('/create',async(req,res)=>{
             res.render('admin',{
                 alert:{status:true,msg:'Slug Create Success',style:'success'},
                 result:result2,
-                slug:result2
+                slug:result2,
+                products:products
                 })
                 return
         }).catch(()=>{
@@ -102,6 +121,7 @@ product.post('/create',async(req,res)=>{
                 alert:{status:true,msg:'Slug error',style:'danger'},
                 result:result2,
                 slug:result2,
+                products:products
                 })
                 return
 
@@ -114,7 +134,8 @@ product.post('/create',async(req,res)=>{
             res.render('admin',{
                 alert:{status:true,msg:'Slug error',style:'danger'},
                 result:result2,
-                slug :result2
+                slug :result2,
+                products:products
                 })
                 return
 
@@ -125,7 +146,8 @@ product.post('/create',async(req,res)=>{
         res.render('admin',{
             alert:{status:true,msg:'Slug ja registrado',style:'danger'},
             result:result2,
-            slug :result2
+            slug :result2,
+            products:products
             })
 
             return

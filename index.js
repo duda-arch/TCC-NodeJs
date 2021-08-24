@@ -57,6 +57,6 @@ app.get('/',async(req,res)=>{
 }
 })
 
-var port = 7856
+var port = 80
 
 http.listen(port,()=>{console.log('http://localhost:'+port)})

@@ -138,7 +138,7 @@ app.post('/login',async(req,res)=>{
 
 app.get('/destroy',(req,res)=>{
     req.session.destroy();
-    res.redirect('/')
+    res.redirect('/login')
 })
 
 app.post('/cadastro',async(req,res)=>{

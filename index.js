@@ -40,7 +40,6 @@ app.get('/',async(req,res)=>{
 
     var slug = await  model.SlugCategory()
 
-
     if(req.session.User != undefined){
 
     
@@ -57,6 +56,6 @@ app.get('/',async(req,res)=>{
 }
 })
 
-var port = 80
+var port = 7895
 
 http.listen(port,()=>{console.log('http://localhost:'+port)})

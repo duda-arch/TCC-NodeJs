@@ -7,52 +7,136 @@
 
 <% }else{  %>
 
+
 <div class="container">
-		<div class="col-10">
-		<div class="row">
-	
-
-		</div>
-				<div style="margin-top: 10px;" class="row">
-					<div class="product">
-				<% obj.forEach((el,index)=>{ %>
-
-				
-					<div  style="margin-left: 3em; "class="col cont-product">
-						<img style="margin-top: 10px;" class="img-responsive" width="200" height="200" src="../products/<%=el.img%>">
-						
-						<a href="/product/<%=el.slug%>">
-							<button style="margin-left: 5em;" type="button" class="btn btn-primary btn-sm btn-block">
-								<span class="glyphicon glyphicon-share-alt"></span> Continue comprando
-							</button>
-						</a>
-					<div class="col-6">
-						<h3  style="margin-top: 10px; " ><%=el.name%></h3>
-						<p style="margin-top: 10px; " class="card-text  more">	<%=el.description%></p>
-						<button type="button" class="btn btn-info btn-sm btn-block">
-							<span class="glyphicon glyphicon-share-alt"></span> <%=el.slug%>
+	<div class="row">
+		<div class="col product">
+			<% obj.forEach((el,index)=>{ %>
+				<div  class="">
+					<img style="margin-top: 10px;" class="img-responsive" width="200" height="200" src="../products/<%=el.img%>">
+					
+					<a href="/product/<%=el.slug%>">
+						<button style="margin-left: 5em;" type="button" class="btn btn-primary btn-sm btn-block">
+							<span class="glyphicon glyphicon-share-alt"></span> Continue comprando
 						</button>
-					</div>
-					<form action="/delete" method="post">
-					<div style="margin-left: 20em; display: left;"  id="price">
+					</a>
+				<div class="col-6">
+					<h3  style="margin-top: 10px; " ><%=el.name%></h3>
+					<p style="margin-top: 10px; " class="card-text  more">	<%=el.description%></p>
+					<button type="button" class="btn btn-info btn-sm btn-block">
+						<span class="glyphicon glyphicon-share-alt"></span> <%=el.slug%>
+					</button>
+				</div>
+				<form action="/delete" method="post">
+					<div style="margin-left: 10em;"  id="price">
 						<p>R$ <%=el.price%>  <button   type="submit" class="btn btn-outline-danger btn-md  " role="button" aria-disabled="true"><img src="../img/lixeira-de-reciclagem.png" width="20px" alt="" srcset=""></button></p>
 						<input type="hidden" name="id" value="<%=index%>">
 					</div>
 				</form>
-					<hr>
-				</div>
-				
-
-				<%	})  %>
-			</div>
-	asdasda
-				
-
-			</div>	
-		</div>
 </div>
 
+			<%	})  %>
+
+
+		</div>
+		<div class="col">
+
+			<div class="row">
+				<div class="col">
+					<h6   class="AdminTitle">Nomes</h6> 
+
+					<% obj.forEach((el,index)=>{ %>
+						<p>							
+								<%= el.name%>
+							
+
+							</p>
+					<%	})  %>
+				</div>
+				<div class="col">
+					<h6 class="AdminTitle">Categorias</h6> 
+					<ul>
+						<% obj.forEach((el,index)=>{ %>
+							<button style="margin-top: 5px;" type="button" class="btn btn-info btn-sm btn-block">
+								<span class="glyphicon glyphicon-share-alt"></span> <%=el.slug%>
+							</button>
+							 <small style="margin-left:30px; font-size: 1rem; font-weight: 500;
+							 line-height: 1.2;">
+								R$: <%=el.price%>
+							</small>
+							<br>
+
+						<%	})  %>
+					</ul>
+	
+				</div>
+			</div>
+			<div>
+				<h6 class="AdminTitle">Cadastrar Endereço</h6> 
+				<input id="one" class="form-control" style="width: 200px;" type="text" placeholder="Nome da Rua">
+				<input  id="two" class="form-control" style="width: 100px; display: flex; display: inline;" type="text" placeholder="Numero">
+				<button type="button" onclick="enviar()" style="font-size: 10px;" class="btn btn-secondary">Confirmar endereço</button>
+				<div id="endereco"></div>
+				<% if(total >= 100){ %>
+			<div  class="FreteGratis" >
+				<h6>
+				Cupom de <span style="color: red;" >Frete Grátis</span>	
+				<br>
+			<small> valido apenas para compras acima de <span style="color:red">R$ 100.00</span></small>
+				</h6>	
+				</div>
+			<%}else{%>
+
+
+				<div  class="FreteGratis" >
+					<h6>
+					Valor do frete pra todo Brasil <span style="color: red;" >R$:10.00</span>	
+					<br>
+				<small > Frete Gratis para compras acima de <span style="color:rgb(0, 47, 255)">R$ 100.00</span></small>
+					</h6>	
+					</div>
+
+			
+
+
+				<%	}  %>
+
+			</div>
+			<h6 style="color:red; margin-top:20px;" id="price">
+			 	<span style="color:black" >Total -></span>	
+			 R$: <%=total%></h6>	
+			 <a href="/">
+			 <button style="margin-left: 25em;" type="button" class="btn btn-primary btn-sm btn-block">
+				<span class="glyphicon glyphicon-share-alt"></span> Continue comprando
+			</button>
+			</a>
+		</div>
+		</div>
+</div>
+<script>
+	function enviar(){
+		if(document.getElementById('one').value <= 0 || document.getElementById('two').value <= 0 ){
+			alert('preencha todos os campos')
+		}else{
+
+			alert('Enviado com sucesso')
+		}
+	}
+</script>
+
 <style>
+	.FreteGratis{
+		margin-top: 10px;
+	  background-color: #B0C4DE;
+
+		padding: 10px;
+		border-radius: 20px;
+	}
+	.AdminTitle {
+    text-align: center;
+    padding: 10px;
+    background-color: #B0C4DE;
+}
 	.card-header{
 		color:white;
 		font-family: 'Oswald', sans-serif;
@@ -68,7 +152,8 @@
 		align-items: center;
 	}
 	.product{
-		width: 50em;
+		
+		width: 100vh;
 		height: 600px;
 		overflow: scroll;
 		background-color: #DCDCDC;
